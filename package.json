@@ -1,0 +1,32 @@
+{
+  "name": "skycast-weather",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "SkyCast — standalone weather forecast dashboard (React + Express + Open-Meteo + Gemini)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "server": "node server/index.js",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.23.0",
+    "express": "^5.2.1",
+    "lucide-react": "^1.47.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "recharts": "^3.10.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^7.0.2",
+    "vite": "^6.3.5"
+  }
+}
