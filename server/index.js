@@ -670,8 +670,14 @@ app.get(/^\/(?!api\/).*/, (_req, res) => {
   res.sendFile(join(distPath, 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 SkyCast running on http://localhost:${PORT}`);
-  console.log(`   UI: ${existsSync(join(distPath, 'index.html')) ? 'serving built app (single-port mode)' : 'API only (run `npm run build` to serve the UI here)'}`);
-  console.log(`   Gemini AI: ${process.env.GEMINI_API_KEY ? 'enabled' : 'disabled (set GEMINI_API_KEY in .env)'}`);
-});
+// Export the app so serverless hosts (Vercel) can wrap it. When run
+// directly (`npm run server` / `npm start`), listen on PORT as before.
+export default app;
+
+if (process.env.VERCEL !== '1' && !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 SkyCast running on http://localhost:${PORT}`);
+    console.log(`   UI: ${existsSync(join(distPath, 'index.html')) ? 'serving built app (single-port mode)' : 'API only (run `npm run build` to serve the UI here)'}`);
+    console.log(`   Gemini AI: ${process.env.GEMINI_API_KEY ? 'enabled' : 'disabled (set GEMINI_API_KEY in .env)'}`);
+  });
+}
